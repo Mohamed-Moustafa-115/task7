@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "task7": {
+    "online-shop": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/task7",
+            "outputPath": "dist/online-shop",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -32,9 +32,13 @@
               }
             ],
             "styles": [
+              "node_modules/bootstrap/scss/bootstrap.scss",
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -64,10 +68,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "task7:build:production"
+              "buildTarget": "online-shop:build:production"
             },
             "development": {
-              "buildTarget": "task7:build:development"
+              "buildTarget": "online-shop:build:development"
             }
           },
           "defaultConfiguration": "development"
