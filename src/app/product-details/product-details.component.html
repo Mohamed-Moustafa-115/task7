@@ -1,0 +1,118 @@
+<div class="container my-5">
+  <div class="row">
+    <div class="col-md-5 d-flex">
+      <div class="main-img">
+        <img class="img-fluid" [src]="imgDomain+product?.cover" [alt]="product.name">
+        
+      </div>
+    </div>
+    
+    <div class="col-md-7">
+      <div class="main-description px-2">
+        <div class="category text-bold">{{product?.subcategory?.name}}</div>
+        <div class="product-title text-bold my-3">{{product?.name}}</div>
+        <div class="price-area my-4">
+          <p class="new-price text-bold mb-1">{{product?.price|currency}}</p>
+          <p class="text-secondary mb-1">(Additional tax may apply on checkout)</p>
+          <p class="new-price text-bold mb-1">{{product?.ratingAverage}} &star;</p>
+        </div>
+
+        <div class="buttons d-flex my-5">
+          <div class="block">
+            <button (click)="addToWishlist(product._id)" class="shadow btn btn btn-primary ">Add to Wishlist</button>
+          </div>
+          <div class="block">
+            <button (click)="addToCart(product._id)" class="shadow btn btn btn-success">Add to cart</button>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="product-details my-4">
+        <p class="details-title text-color mb-1">Product Details</p>
+        <p class="description">{{product?.description}}</p>
+      </div>
+
+      <div class="row questions bg-light p-3">
+        <div class="col-md-1 icon">
+          <i class="fa-brands fa-rocketchat questions-icon"></i>
+        </div>
+        <div class="col-md-11 text">
+          Have a question about our products at E-Store? Feel free to contact our representatives via live chat or
+          email.
+        </div>
+      </div>
+
+      <div class="delivery my-4">
+        <p class="font-weight-bold mb-0"><span><i class="fa-solid fa-truck"></i></span> <b>Delivery done in 3 days from
+            date of purchase</b> </p>
+        <p class="text-secondary">Order now to get this product delivery</p>
+      </div>
+
+      <div class="delivery-options my-4">
+        <p class="font-weight-bold mb-0"><span><i class="fa-solid fa-filter"></i></span> <b>Delivery options</b> </p>
+        <p class="text-secondary">View delivery options here</p>
+        
+      </div>
+      <div name="reviews" >
+        <form [formGroup]="reviewForm" (ngSubmit)="addReview(product._id,reviewForm)" class="rev">
+          <div class="form-floating">
+            <textarea class="form-control" formControlName="comment" placeholder="Leave a comment here"
+              id="floatingTextarea"></textarea>
+            <label for="floatingTextarea">Review</label>
+          </div>
+          <div class="mt-3 text-danger">
+            @if(reviewError!==''){ <label for="">{{reviewError}}</label> }
+          </div>
+          <div class="rating">
+            <input type="radio" formControlName="rating" id="star5" name="rating" value="5" />
+            <label class="star" for="star5" title="Awesome" aria-hidden="true"></label>
+            <input type="radio" formControlName="rating" id="star4" name="rating" value="4" />
+            <label class="star" for="star4" title="Great" aria-hidden="true"></label>
+            <input type="radio" formControlName="rating" id="star3" name="rating" value="3" />
+            <label class="star" for="star3" title="Very good" aria-hidden="true"></label>
+            <input type="radio" formControlName="rating" id="star2" name="rating" value="2" />
+            <label class="star" for="star2" title="Good" aria-hidden="true"></label>
+            <input type="radio" formControlName="rating" id="star1" name="rating" value="1" />
+            <label class="star" for="star1" title="Bad" aria-hidden="true"></label>
+            <button class="btn btn-success shadow mt-2 mx-3">Add Review</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+    <h2 class="text-center">Product preview</h2>
+    <div id="carouselExampleAutoplaying" class="carousel slide w-50 m-auto" data-bs-ride="carousel">
+      <div class="carousel-inner ">
+        @for(image of product?.images; track image){  
+        <div [class]="' carousel-item '+disable()">
+          <img [src]="imgDomain+image" class="d-block m-auto" alt="..." >
+        </div>
+        }
+      </div>
+      <button class="carousel-control-prev bg-dark" type="button" data-bs-target="#carouselExampleAutoplaying"
+        data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next bg-dark" type="button" data-bs-target="#carouselExampleAutoplaying"
+        data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+    <div class="container">
+      <hr class="my-3">
+      <h2 class="text-center">Product Reviews</h2>
+      <hr class="my-3">
+      @for(review of product?.reviews; track review._id){
+      <div>
+        <h4>{{review?.user?.name}}</h4>
+        <p>{{review?.comment}} - {{review?.rating}}&star;</p>
+        <p>{{review?.createdAt|date}}</p>
+        <hr class="my-4">
+      </div>
+    }
+    </div>
+  </div>
+</div>

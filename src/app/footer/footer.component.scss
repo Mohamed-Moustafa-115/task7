@@ -2,6 +2,8 @@ footer
 {
     display: flex;
     justify-content: space-around;
+    background-color: rgba(56,38,115,255);
+
 }
 
 footer a
@@ -13,7 +15,7 @@ footer a
 }
 footer a:hover
 {
-    color: rgba(140,198,63,255);
+    color: rgba(0,194,169,255);
     transition-duration: .3s;
 }
 .contact
