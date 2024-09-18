@@ -12,6 +12,8 @@ import { AuthService } from '../services/auth.service';
 export class HeaderComponent {
   isLogin: boolean = false;
   constructor(private _AuthService: AuthService, private _Router: Router) {
+    // if (_AuthService.currentUser !== null) { this.isLogin = true }
+    // else { this.isLogin = false }
     _AuthService.currentUser.subscribe(() => {
       if (_AuthService.currentUser.getValue() !== null) { this.isLogin = true }
       else { this.isLogin = false }
@@ -19,6 +21,6 @@ export class HeaderComponent {
   }
   logout() {
     this._AuthService.logout();
-    this._Router.navigate(['/login'])
+    this._Router.navigate(['/home'])
   }
 }

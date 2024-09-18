@@ -2,3 +2,17 @@
   bottom: 3%;
   left: 5%;
 }
+
+.search{
+  display: flex;
+  flex-direction: row;
+  align-content: space-around;
+}
+.bg-success{
+  background-color: rgba(0,194,169,255) !important;
+}
+.btn-success{
+  background-color: rgba(0,194,169,255) !important;
+  border-color: rgba(0,194,169,255) !important;
+  ;
+}

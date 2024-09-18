@@ -3,11 +3,12 @@ import { AuthService } from '../services/auth.service';
 import { ReviewsService } from '../services/reviews.service';
 import { Pagination } from '../interfaces/pagination';
 import { GlobalService } from '../services/global.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-reviews',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './reviews.component.html',
   styleUrl: './reviews.component.scss'
 })

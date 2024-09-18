@@ -1,21 +1,38 @@
 <div class="bg-black text-white container mt-4 d-flex justify-content-around align-items-center">
   <div class="text-center m-3">
-    <h1>All Products</h1>
+    <h1>Products</h1>
   </div>
-  <img src="images/iPhone.svg" alt="iPhone">
+  <img src="images/basket.svg" alt="iPhone" class="w-25">
+</div>
+
+<div class="row m-auto container mt-4 bg-success ">
+  <form [formGroup]="prodSearch" class="search">
+    <input type="text" formControlName="searchValue" id="searchValue" placeholder="Search" class="m-2 w-25"
+      (keyup)="enterSearchValue()">
+    <div class="m-auto">
+      <label for="">Sort by</label>
+      <select formControlName="searchBy" id="searchBy" (change)="sortResults()">
+        <option value="">All</option>
+        <option value="name">Name</option>
+        <option value="category">Categories</option>
+        <option value="subcategories">Subcategories</option>
+        <option value="price">Price</option>
+      </select>
+    </div>
+  </form>
 </div>
 
 <div class="row m-auto container mt-4">
   @for(product of products; track product._id){
-  <div class="card m-2 col-4" style="width: 18rem;">
+  <div class="card me-auto ms-auto mt-4 col-4" style="width: 18rem;">
     <img [src]="imgDomain+product.cover" class="card-img-top w-100 h-50" [alt]="product.name">
     <div class="card-body position-relative">
       <h5 class="card-title">{{product.name}}</h5>
       <p class="card-text">{{product.description|description:15}}</p>
       <p class="card-text">price : {{product.price|currency}}</p>
-      <p class="card-text">{{product.ratingAverage}} &star; - count {{product.ratingCount}}</p>
+      <p class="card-text">{{product.ratingAverage|number:'1.1-1'}} &star; - count {{product.ratingCount}}</p>
       <div class="position-absolute btn-card">
-        <a [routerLink]="['/products',product._id]" class="btn btn-primary mx-2">See More</a>
+        <a [routerLink]="['/products',product._id]" class="btn btn-dark mx-2">See More</a>
         <button (click)="addToCart(product._id)" class="btn btn-success mx-2">Add to Cart</button>
       </div>
     </div>
@@ -23,8 +40,8 @@
   }
 </div>
 
-<div class="container align-items-center m-auto w-25">
-  <ul class="pagination m-auto w-50">
+<div class="container m-auto mt-5 w-25">
+  <ul class="pagination">
     @if(pagination.prev){<li (click)="changePage(pagination.prev)" class="page-item"><button
         class="page-link">Previous</button></li>}
     @if(pagination.currentPage!==1)

@@ -1,1 +1,41 @@
-/* You can add global styles to this file, and also import other style files */
+.pagination {
+    display: flex;
+    justify-content: center !important;
+}
+
+.bg-success {
+    background-color: rgba(0, 194, 169, 255) !important;
+}
+
+.btn-success {
+    background-color: rgba(0, 194, 169, 255) !important;
+    border-color: rgba(0, 194, 169, 255) !important;
+
+}
+
+.btn-success:hover {
+    background-color: rgba(0,165,140,255) !important;
+    border-color: rgba(0,165,140,255) !important;
+}
+
+.btn-warning {
+    background-color: rgba(241,90,158,255) !important;
+    border-color: rgba(241,90,158,255) !important;
+}
+
+.btn-warning:hover {
+    background-color: rgba(212,74,144,255) !important;
+    border-color: rgba(212,74,144,255) !important;
+}
+
+.btn-outline-warning{
+    border-color: rgba(241,90,158,255) !important;
+    color: black !important;
+}
+
+.btn-outline-warning:hover{
+    background-color: rgba(212,74,144,255) !important;
+    border-color: rgba(212,74,144,255) !important;
+    color: white;
+
+}

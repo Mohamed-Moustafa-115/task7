@@ -4,7 +4,7 @@ import { Signup, Login } from '../interfaces/auth';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
 import { Router } from '@angular/router';
-import {GlobalService} from './global.service';
+import { GlobalService } from './global.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,20 +12,28 @@ import {GlobalService} from './global.service';
 export class AuthService {
   hostName: string = '';
   routeName: string = '';
-  constructor(private _HttpClient: HttpClient,private _Router:Router,private _GlobalService: GlobalService) {
+  constructor(private _HttpClient: HttpClient, private _Router: Router, private _GlobalService: GlobalService) {
     this.hostName = this._GlobalService.hostName;
     this.routeName = this._GlobalService.authRoute;
-    if(localStorage.getItem('user')!==null)
-    {
-      this.saveCurrentUser();
+    if (localStorage.getItem('user') !== null) {
+      this.saveCurrentUser()
     }
-   }
+  }
   currentUser = new BehaviorSubject(null);
-  authPhoto: string = 'images/door-open.svg'
+  authPhoto: string = 'images/phone.svg'
 
   saveCurrentUser() {
     const token: any = localStorage.getItem('user');
     this.currentUser.next(jwtDecode(token));
+  }
+
+  checkToken() {
+    const token: any = localStorage.getItem('user');
+    const decodedToken = jwtDecode(token);
+    if (decodedToken.exp! < Date.now() / 1000) {
+      this.logout()
+      this._Router.navigate(['/home'])
+    }
   }
 
   singUp(formData: Signup): Observable<any> {
@@ -51,14 +59,5 @@ export class AuthService {
   logout() {
     localStorage.removeItem('user');
     this.currentUser.next(null);
-  }
-
-  checkToken() {
-    const token: any = localStorage.getItem('user');
-    const decodedToken = jwtDecode(token);
-    if (decodedToken.exp! < Date.now() / 1000) {
-      this.logout()
-      this._Router.navigate(['/login'])
-    }
   }
 }

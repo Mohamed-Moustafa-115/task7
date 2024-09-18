@@ -1,0 +1,46 @@
+<div class="bg-black text-white container mt-4 d-flex justify-content-around align-items-center">
+    <div class="text-center m-3">
+      <h1>All Products</h1>
+    </div>
+    <img src="images/iPhone.svg" alt="iPhone">
+  </div>
+  
+  <div class="row m-auto container mt-4">
+    <form [formGroup]="prodSearch" >
+      <input type="text" formControlName="searchValue" id="" placeholder="Search" class="m-2">
+      <button type="submit" class="btn btn-dark m-4" [routerLink]="['search/',]">Search</button>
+    </form>
+  </div>
+  
+  <div class="row m-auto container mt-4">
+    @for(product of products; track product._id){
+    <div class="card m-2 col-4" style="width: 18rem;">
+      <img [src]="imgDomain+product.cover" class="card-img-top w-100 h-50" [alt]="product.name">
+      <div class="card-body position-relative">
+        <h5 class="card-title">{{product.name}}</h5>
+        <p class="card-text">{{product.description|description:15}}</p>
+        <p class="card-text">price : {{product.price|currency}}</p>
+        <p class="card-text">{{product.ratingAverage|number:'1.1-1'}} &star; - count {{product.ratingCount}}</p>
+        <div class="position-absolute btn-card">
+          <a [routerLink]="['/products',product._id]" class="btn btn-primary mx-2">See More</a>
+          <button (click)="addToCart(product._id)" class="btn btn-success mx-2">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+  
+  <div class="container m-auto mt-5 w-25">
+    <ul class="pagination">
+      @if(pagination.prev){<li (click)="changePage(pagination.prev)" class="page-item"><button
+          class="page-link">Previous</button></li>}
+      @if(pagination.currentPage!==1)
+      {<li (click)="changePage(1)" class="page-item"><button class="page-link">1</button></li>}
+      <li class="page-item"><button class="page-link">{{pagination.currentPage}}</button></li>
+      @if(pagination.currentPage!==pagination.totalPages)
+      {<li (click)="changePage(pagination.totalPages!)" class="page-item"><button
+          class="page-link">{{pagination.totalPages}}</button></li>}
+      @if(pagination.next){<li (click)="changePage(pagination.next)" class="page-item"><button
+          class="page-link">Next</button></li>}
+    </ul>
+  </div>

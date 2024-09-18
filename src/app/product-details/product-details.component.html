@@ -1,9 +1,27 @@
 <div class="container my-5">
   <div class="row">
     <div class="col-md-5 d-flex">
-      <div class="main-img">
-        <img class="img-fluid" [src]="imgDomain+product?.cover" [alt]="product.name">
-        
+
+      <div class="main-img w-100">
+        <div id="carouselExampleAutoplaying" class="carousel slide m-auto" data-bs-ride="carousel">
+          <div class="carousel-inner ">
+            @for(image of product?.images; track $index){  
+            <div [class]="$index===0?'carousel-item active':'carousel-item'">
+              <img [src]="imgDomain+product?.images[$index]" class="d-block m-auto" alt="..." >
+            </div>
+            }
+          </div>
+          <button class="carousel-control-prev bg-dark" type="button" data-bs-target="#carouselExampleAutoplaying"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next bg-dark" type="button" data-bs-target="#carouselExampleAutoplaying"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
       </div>
     </div>
     
@@ -81,26 +99,7 @@
       </div>
 
     </div>
-    <h2 class="text-center">Product preview</h2>
-    <div id="carouselExampleAutoplaying" class="carousel slide w-50 m-auto" data-bs-ride="carousel">
-      <div class="carousel-inner ">
-        @for(image of product?.images; track image){  
-        <div [class]="' carousel-item '+disable()">
-          <img [src]="imgDomain+image" class="d-block m-auto" alt="..." >
-        </div>
-        }
-      </div>
-      <button class="carousel-control-prev bg-dark" type="button" data-bs-target="#carouselExampleAutoplaying"
-        data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next bg-dark" type="button" data-bs-target="#carouselExampleAutoplaying"
-        data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
-    </div>
+    
     <div class="container">
       <hr class="my-3">
       <h2 class="text-center">Product Reviews</h2>

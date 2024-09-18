@@ -18,7 +18,7 @@
         <td>{{review?.comment}}</td>
         <td>{{review?.rating}}</td>
         <td>
-          <a class="btn btn-primary btn-sm rounded-3 mx-3">Update</a>
+          <a class="btn btn-primary btn-sm rounded-3 mx-3" [routerLink]="['../updatereviews',review._id]" routerLinkActive="router-link-active" >Update</a>
           <button (click)="deleteReview(review._id)" class="btn btn-danger btn-sm rounded-3">Delete</button>
         </td>
       </tr>

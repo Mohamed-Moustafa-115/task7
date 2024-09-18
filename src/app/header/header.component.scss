@@ -1,6 +1,17 @@
 nav{
     background-color: rgba(56,38,115,255);
+    color: white;
     a:hover{
         color: rgba(0,194,169,255);
+    }
+    a{
+        color: white;
+    }
+    .dropdown-menu{
+        background-color: rgba(56,38,115,255);
+
+    }
+    .logout{
+        cursor: pointer;
     }
 }

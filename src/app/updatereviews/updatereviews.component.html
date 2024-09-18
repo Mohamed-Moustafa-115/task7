@@ -1,0 +1,28 @@
+<div class="container mt-3 w-50" style="height: 20rem;">
+    <div name="reviews">
+        <form [formGroup]="reviewForm" (ngSubmit)="updateReview(id,reviewForm)">
+            <h2>Update review</h2>
+            <div class="form-floating">
+                <textarea class="form-control" formControlName="comment" placeholder="Leave a comment here"
+                    id="floatingTextarea"></textarea>
+                <label for="floatingTextarea">Review</label>
+            </div>
+            <div class="mt-3 text-danger">
+                @if(reviewError!==''){ <label for="">{{reviewError}}</label> }
+            </div>
+            <div class="rating">
+                <input type="radio" formControlName="rating" id="star5" name="rating" value="5" />
+                <label class="star" for="star5" title="Awesome" aria-hidden="true"></label>
+                <input type="radio" formControlName="rating" id="star4" name="rating" value="4" />
+                <label class="star" for="star4" title="Great" aria-hidden="true"></label>
+                <input type="radio" formControlName="rating" id="star3" name="rating" value="3" />
+                <label class="star" for="star3" title="Very good" aria-hidden="true"></label>
+                <input type="radio" formControlName="rating" id="star2" name="rating" value="2" />
+                <label class="star" for="star2" title="Good" aria-hidden="true"></label>
+                <input type="radio" formControlName="rating" id="star1" name="rating" value="1" />
+                <label class="star" for="star1" title="Bad" aria-hidden="true"></label>
+                <button class="btn btn-success shadow mt-2 mx-3">Add Review</button>
+            </div>
+        </form>
+    </div>
+</div>

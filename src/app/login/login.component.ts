@@ -1,12 +1,12 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
     email: new FormControl(null, [Validators.required, Validators.email]),
     password: new FormControl(null, [Validators.required, Validators.minLength(6), Validators.maxLength(20)])
   })
-  loginImage: string = '';
+  phoneImage: string = '';
   invalidLogin: string = '';
 
   login(formData: FormGroup) {
@@ -33,5 +33,5 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  ngOnInit(): void { this.loginImage = this._AuthService.authPhoto }
+  ngOnInit(): void { this.phoneImage = this._AuthService.authPhoto }
 }
